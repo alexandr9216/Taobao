@@ -1,7 +1,12 @@
 /**
  * Created by Alexandr on 10.03.2019.
  */
+
+
+
 (function() {
+    alert('test'); return;
+
     'use strict';
 
     // Your code here...
