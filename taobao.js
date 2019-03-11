@@ -5,8 +5,6 @@
 
 
 (function() {
-    alert('test'); return;
-
     'use strict';
 
     // Your code here...
