@@ -3,8 +3,8 @@
  */
 
 
-    var title = $("#J_DetailMeta .tb-detail-hd h1").text();
-    var title_desc = $("#J_DetailMeta .tb-detail-hd .newp").text();
+    //var title = $("#J_DetailMeta .tb-detail-hd h1").text();
+    //var title_desc = $("#J_DetailMeta .tb-detail-hd .newp").text();
 
 
 
@@ -67,7 +67,7 @@
             }
         });
 
-        GM_log( $($desc_content).html() );
+        console.log( $($desc_content).html() );
     }
 
 
@@ -84,7 +84,7 @@
             fix_image(image_url);
 
             arr_gallery_image.push(image_url);
-            GM_log(arr_gallery_image);
+            console.log(arr_gallery_image);
         });
 
         /*
@@ -151,7 +151,7 @@
 
         });
 
-        GM_log(arr_option);
+        console.log(arr_option);
 
     }
 
@@ -165,7 +165,7 @@
         var reg = new RegExp('"skuMap"[\s]*:[\s]*[{][A-Za-z0-9\s;:.,\{\}"]+"[\s]*[}][\s]*[}]', 'ig');
         var result = sku_map.match(reg);
         result = JSON.parse('{' + result[0] + '}');
-        //GM_log(result);
+        //console.log(result);
 
         //кликаем по всем вариантам опций по очередно, чтобы узнать скидку
         var i = -1;
@@ -186,7 +186,7 @@
 
                     var out_of_stock = false;
                     arr_id.forEach(function(item, i, arr_id) {
-                        //GM_log('#J_DetailMeta [data-value="'+ item +'"]');
+                        //console.log('#J_DetailMeta [data-value="'+ item +'"]');
                         var $_item_id = $('#J_DetailMeta [data-value="'+ item +'"]');
 
                         if ( !$_item_id.hasClass('tb-selected') ) {
@@ -218,7 +218,7 @@
         }
 
         setTimeout(function run_timer() {
-            GM_log(result);
+            console.log(result);
         }, (interval_time * length_skuMap) + 200);
 
     }
@@ -234,13 +234,13 @@
         '#wolf-block-taobao {padding: 20px 20px; border: 5px solid red; background: #efefef; box-shadow: 0 2px 13px 6px rgba(0, 0, 0, 0.49); position: fixed; top: 0; left: 0; display: block; width: 30%; z-index: 999999;}'+
         '</style>';
 
-    $('body').prepend(html);
+    //$('body').prepend(html);
 
-    //GM_log(image);
-    //GM_download('http://img.alicdn.com/imgextra/i4/688058032/TB2B0DdmGSWBuNjSsrbXXa0mVXa_!!688058032-0-item_pic.jpg_430x430q90.jpg', 'wolf.jpg');
+    //console.log(image);
+    //console.lognload('http://img.alicdn.com/imgextra/i4/688058032/TB2B0DdmGSWBuNjSsrbXXa0mVXa_!!688058032-0-item_pic.jpg_430x430q90.jpg', 'wolf.jpg');
 
     //TShop.Setup({'a':'1'});
-    //GM_log(document);
+    //console.log(document);
     /*$('#J_LinkBuy').click(function(){
      alert('Вы нажали на элемент "J_LinkBuy"');
      });*/
@@ -248,6 +248,7 @@
 
     //click
     //-------------------------------------------------------------------------
+/*
     $('body').on('click', '#wolf-block-taobao #start-test-wolf', function (e) {
 
 
@@ -265,13 +266,13 @@
         //get_link_video();
 
         //alert('20509:28317');
-        //GM_log($('#J_DetailMeta').html());
+        //console.log($('#J_DetailMeta').html());
 
         var title = $("#J_DetailMeta .tb-detail-hd h1").text();
         var title_desc = $("#J_DetailMeta .tb-detail-hd .newp").text();
 
     });
-
+*/
 
 
     //Получеам ссылку на видеописание товара если есть
@@ -281,7 +282,7 @@
 
         //если нет кнопки плей, то Видео-описание отсутствует и выходим из этой функции
         if ( $("#J_DetailMeta .J_playVideo").length == 0) {
-            GM_log('Видео-описание отсутствует');
+            console.log('Видео-описание отсутствует');
             return false;
         }
 
@@ -296,7 +297,7 @@
                 video = $('#J_DetailMeta .tm-video-box video source').attr('src');
 
                 if (video !== undefined) {//если появится тег с видео, то получаем ссылку
-                    GM_log('interval URL: ' + video);
+                    console.log('interval URL: ' + video);
                 }
 
                 if (i < 2000 && video === undefined) {//ждем до тех пор, пока не появиться, но ждем не больше 2 секунд
@@ -306,7 +307,7 @@
             }, 100);
             //если  тег с видео есть с самого начала, то получаем ссылку:
         } else {
-            GM_log(video);
+            console.log(video);
         }
 
     }
