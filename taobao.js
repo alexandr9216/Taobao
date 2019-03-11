@@ -3,6 +3,7 @@ var title_desc = $("#J_DetailMeta .tb-detail-hd .newp").text();
 
 
 
+
 // вкладка - [Детали продукта]
 function get_product_detail() {
     var arr_product_detail = [];
