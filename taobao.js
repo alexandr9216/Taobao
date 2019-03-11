@@ -1,4 +1,4 @@
-(function() {
+(function () {
     //'use strict';
 
     // Your code here...
@@ -6,18 +6,65 @@
     var title = $("#J_DetailMeta .tb-detail-hd h1").text();
     var title_desc = $("#J_DetailMeta .tb-detail-hd .newp").text();
 
+    var html = '<div id="wolf-block-taobao" style="padding:20px 20px; border-bottom:10px solid red">' +
+        '<h1>' + title + '</h1>' +
+        //'<img src="' + arr_gallery_image[0] + '" width="100" />' +
+        '<button id="start-test-wolf" type="button">zzz Тест zzz</button>' +
+        '</div>' +
+        '<style>' +
+        '#wolf-block-taobao {padding: 20px 20px; border: 5px solid red; background: #efefef; box-shadow: 0 2px 13px 6px rgba(0, 0, 0, 0.49); position: fixed; top: 0; left: 0; display: block; width: 30%; z-index: 999999;}' +
+        '</style>';
+
+    $('body').prepend(html);
+
+    //GM_log(image);
+    //GM_download('http://img.alicdn.com/imgextra/i4/688058032/TB2B0DdmGSWBuNjSsrbXXa0mVXa_!!688058032-0-item_pic.jpg_430x430q90.jpg', 'wolf.jpg');
+
+    //TShop.Setup({'a':'1'});
+    //GM_log(document);
+    /*$('#J_LinkBuy').click(function(){
+     alert('Вы нажали на элемент "J_LinkBuy"');
+     });*/
+    //$('#J_LinkBuy').trigger('click');
+
+    //click
+    //-------------------------------------------------------------------------
+    $('body').on('click', '#wolf-block-taobao #start-test-wolf', function (e) {
+
+        //get_product_option();
+        //get_product_option_sku_map_price();
+        //get_product_spec();
+        get_product_detail();
+        get_desc_content();
+
+        //get_link_video();
+
+        //alert('20509:28317');
+        //GM_log($('#J_DetailMeta').html());
+
+        var title = $("#J_DetailMeta .tb-detail-hd h1").text();
+        var title_desc = $("#J_DetailMeta .tb-detail-hd .newp").text();
+
+    });
+
+
+
+
+
+
+
 
 
     // вкладка - [Детали продукта]
     function get_product_detail() {
         var arr_product_detail = [];
-        $("#attributes #J_AttrList #J_AttrUL").find('li').each(function(indx, element){
+        $("#attributes #J_AttrList #J_AttrUL").find('li').each(function (indx, element) {
             var name = $(element).text();
             var i_str = name.indexOf(':');
             name = (i_str === -1) ? name : name.substring(0, i_str);
 
             var val = $(element).attr('title');
-            arr_product_detail.push( {'name':name, 'val':val} );
+            arr_product_detail.push({'name': name, 'val': val});
         });
 
         console.log(arr_product_detail);
@@ -27,10 +74,10 @@
     //вкладка - [спецификации] (самое полное описание)
     function get_product_spec() {
         var product_spec = $("#J_Detail #J_Attrs table.tm-tableAttr tbody");//вкладка - [спецификации] (самое полное описание)
-        if ( product_spec.length !== 0) {//если нет [спецификации], то
+        if (product_spec.length !== 0) {//если нет [спецификации], то
             var arr_product_spec = [], i = 0;
-            $(product_spec).find('tr').each(function(indx, element){
-                if ( $(element).hasClass('tm-tableAttrSub') ) {
+            $(product_spec).find('tr').each(function (indx, element) {
+                if ($(element).hasClass('tm-tableAttrSub')) {
                     i++;
                     //console.log($(element).text());
                     var name = $(element).text();
@@ -41,7 +88,7 @@
                     var sub_name = $(element).find('th').text();
                     var sub_val = $(element).find('td').text();
 
-                    arr_product_spec[i]['sub'].push( {'sub_name':sub_name, 'sub_val':sub_val} );
+                    arr_product_spec[i]['sub'].push({'sub_name': sub_name, 'sub_val': sub_val});
                 }
 
             });
@@ -52,33 +99,26 @@
     }
 
 
-
-
-
     //Нижнее описание товара -------------
     function get_desc_content() {
-        var $desc_content = $.parseHTML( $('#description .content').html() );
-        $($desc_content).find('img').each(function(indx, element){
+        var $desc_content = $.parseHTML($('#description .content').html());
+        $($desc_content).find('img').each(function (indx, element) {
             //alert( $(element).attr('src') );
             //$(element).attr('src', 'TEST_'+$(element).attr('src') );
             var img_lazyload = $(element).attr('data-ks-lazyload');
-            if ( img_lazyload !== undefined ) {
-                $(element).attr('src', 'TEST_'+img_lazyload);
+            if (img_lazyload !== undefined) {
+                $(element).attr('src', 'TEST_' + img_lazyload);
             }
         });
 
-        GM_log( $($desc_content).html() );
+        GM_log($($desc_content).html());
     }
-
-
-
-
 
 
     //Получаем галерею картинок в нужном размере:
     function get_gallery_image() {
         var arr_gallery_image = [];
-        $("#J_DetailMeta #J_UlThumb img").each(function(indx, element){
+        $("#J_DetailMeta #J_UlThumb img").each(function (indx, element) {
             var image_url = $(element).attr('src');
 
             fix_image(image_url);
@@ -101,18 +141,16 @@
     }
 
 
-
-
     //Получаем Опции:
     function get_product_option() {
         var arr_option = [];
         var id_option = 0;
-        $("#J_DetailMeta .tb-property .tb-sku .tm-sale-prop").each(function(indx, element){
+        $("#J_DetailMeta .tb-property .tb-sku .tm-sale-prop").each(function (indx, element) {
 
             var name_option = $(element).find('.tb-metatit:first').text();//название опции
 
             var arr_option_val = [];
-            $(element).find('ul.J_TSaleProp li').each(function(indx2, element2){
+            $(element).find('ul.J_TSaleProp li').each(function (indx2, element2) {
                 var name_val = $(element2).find('a > span:first').text();//название значения опции
 
                 var id_option_val = $(element2).attr('data-value');//id taobao в формате: "опция:значение_опции"
@@ -136,17 +174,17 @@
                 image_val = (image_val === undefined || image_val === null) ? '' : image_val;
 
                 arr_option_val[indx2] = {
-                    'name_val':name_val,
-                    'id_val':id_val,
-                    'image_val':image_val
+                    'name_val': name_val,
+                    'id_val': id_val,
+                    'image_val': image_val
                 };
 
             });
 
             arr_option[indx] = {
-                'name_option':name_option,
-                'id_option':id_option,
-                'val_option':arr_option_val
+                'name_option': name_option,
+                'id_option': id_option,
+                'val_option': arr_option_val
             };
 
         });
@@ -185,15 +223,15 @@
                 setTimeout(function run_timer() {
 
                     var out_of_stock = false;
-                    arr_id.forEach(function(item, i, arr_id) {
+                    arr_id.forEach(function (item, i, arr_id) {
                         //GM_log('#J_DetailMeta [data-value="'+ item +'"]');
-                        var $_item_id = $('#J_DetailMeta [data-value="'+ item +'"]');
+                        var $_item_id = $('#J_DetailMeta [data-value="' + item + '"]');
 
-                        if ( !$_item_id.hasClass('tb-selected') ) {
+                        if (!$_item_id.hasClass('tb-selected')) {
                             $_item_id.find('a')[0].click();
                         }
 
-                        if ( $_item_id.hasClass('tb-out-of-stock') ) {
+                        if ($_item_id.hasClass('tb-out-of-stock')) {
                             out_of_stock = true;
                         }
 
@@ -224,69 +262,19 @@
     }
 
 
-
-    var html = '<div id="wolf-block-taobao" style="padding:20px 20px; border-bottom:10px solid red">' +
-        '<h1>' + title + '</h1>' +
-        //'<img src="' + arr_gallery_image[0] + '" width="100" />' +
-        '<button id="start-test-wolf" type="button">zzz Тест zzz</button>'+
-        '</div>'+
-        '<style>'+
-        '#wolf-block-taobao {padding: 20px 20px; border: 5px solid red; background: #efefef; box-shadow: 0 2px 13px 6px rgba(0, 0, 0, 0.49); position: fixed; top: 0; left: 0; display: block; width: 30%; z-index: 999999;}'+
-        '</style>';
-
-    $('body').prepend(html);
-
-    //GM_log(image);
-    //GM_download('http://img.alicdn.com/imgextra/i4/688058032/TB2B0DdmGSWBuNjSsrbXXa0mVXa_!!688058032-0-item_pic.jpg_430x430q90.jpg', 'wolf.jpg');
-
-    //TShop.Setup({'a':'1'});
-    //GM_log(document);
-    /*$('#J_LinkBuy').click(function(){
-     alert('Вы нажали на элемент "J_LinkBuy"');
-     });*/
-    //$('#J_LinkBuy').trigger('click');
-
-    //click
-    //-------------------------------------------------------------------------
-    $('body').on('click', '#wolf-block-taobao #start-test-wolf', function (e) {
-
-
-        //$('#J_LinkBuy').click();
-        //$('#J_LinkBuy').css({'background':'#10ff00'});
-
-        //$('#J_DetailMeta [data-value="1627207:132069"] a')[0].click();
-
-        //get_product_option();
-        //get_product_option_sku_map_price();
-        //get_product_spec();
-        //get_product_detail();
-        get_desc_content();
-
-        //get_link_video();
-
-        //alert('20509:28317');
-        //GM_log($('#J_DetailMeta').html());
-
-        var title = $("#J_DetailMeta .tb-detail-hd h1").text();
-        var title_desc = $("#J_DetailMeta .tb-detail-hd .newp").text();
-
-    });
-
-
-
     //Получеам ссылку на видеописание товара если есть
-    function get_link_video(){
+    function get_link_video() {
 
         var video = $('#J_DetailMeta .tm-video-box video source').attr('src');//пробуем получить тег с видео
 
         //если нет кнопки плей, то Видео-описание отсутствует и выходим из этой функции
-        if ( $("#J_DetailMeta .J_playVideo").length == 0) {
+        if ($("#J_DetailMeta .J_playVideo").length == 0) {
             GM_log('Видео-описание отсутствует');
             return false;
         }
 
 
-        if ( video === undefined ) {//если тега с видео нет,
+        if (video === undefined) {//если тега с видео нет,
             $("#J_DetailMeta .J_playVideo").trigger('click');//значит пробуем нажать на кнопку плей, чтобы динамически появился тег с видео
 
             var i = 0;
@@ -312,11 +300,10 @@
     }
 
 
-
     /*Про картинки: если в url формат ".webp" в конце убираем "_.webp" или "_400x400.jpg_.webp" и получаем стандартный формат
      Чтобы получить другой размер картинки, меняем пропорционально в url например с 400x400 на 200x200
      */
-    function fix_image(image_url){
+    function fix_image(image_url) {
         //убераем расширение .webp в url если есть, в результате останеться .jpg
         var i_str = image_url.search(/_[.]webp/gi);
         if (i_str != -1) {
