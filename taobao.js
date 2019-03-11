@@ -3,6 +3,8 @@
  */
 (function() {
 
+    alert('qqq');
+
         // Your code here...
 
         var title = $("#J_DetailMeta .tb-detail-hd h1").text();
