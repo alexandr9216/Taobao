@@ -4,6 +4,8 @@
 //(function() {
 
     alert('qqq2222');
+    alert('qqq2222');
+
 
         // Your code here...
 
