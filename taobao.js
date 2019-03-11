@@ -3,12 +3,6 @@
  */
 
 
-
-(function() {
-    'use strict';
-
-    // Your code here...
-
     var title = $("#J_DetailMeta .tb-detail-hd h1").text();
     var title_desc = $("#J_DetailMeta .tb-detail-hd .newp").text();
 
@@ -343,4 +337,3 @@
     }
 
 
-})();
