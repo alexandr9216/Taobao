@@ -3,6 +3,21 @@
 
     // Your code here...
 
+
+    var html_block_result_preview = '' +
+        '<div id="block_result_preview">' +
+            '<div class="brp_title"><input type="text"><div>'+
+            '<div class="brp_images"><div>'+
+            '<div class="brp_price"><div>'+
+            '<div class="brp_var_attr"><div>'+
+            '<div class="brp_desc_attr"><div>'+
+            '<div class="brp_desc_content"><div>'+
+        '</div>'+
+    '';
+
+
+
+
     var title = $("#J_DetailMeta .tb-detail-hd h1").text();
     var title_desc = $("#J_DetailMeta .tb-detail-hd .newp").text();
 
