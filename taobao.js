@@ -26,10 +26,7 @@
         '<h1>' + title + '</h1>' +
         //'<img src="' + arr_gallery_image[0] + '" width="100" />' +
         '<button id="start-test-wolf" type="button">zzz Тест zzz</button>' +
-        '</div>' +
-        '<style>' +
-        '#wolf-block-taobao {padding: 20px 20px; border: 5px solid red; background: #efefef; box-shadow: 0 2px 13px 6px rgba(0, 0, 0, 0.49); position: fixed; top: 0; left: 0; display: block; width: 30%; z-index: 999999;}' +
-        '</style>';
+        '</div>';
 
     $('body').prepend(html);
 
