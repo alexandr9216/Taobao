@@ -7,11 +7,11 @@
     var html_block_result_preview = '' +
         '<div id="block_result_preview">' +
             '<div class="brp_title"><input type="text"/></div>'+
-            '<div class="brp_images"><div/>'+
-            '<div class="brp_price"><div/>'+
-            '<div class="brp_var_attr"><div/>'+
-            '<div class="brp_desc_attr"><div/>'+
-            '<div class="brp_desc_content"><div/>'+
+            '<div class="brp_images"></div>'+
+            '<div class="brp_price"></div>'+
+            '<div class="brp_var_attr"></div>'+
+            '<div class="brp_desc_attr"></div>'+
+            '<div class="brp_desc_content"></div>'+
         ''+
     '';
 
