@@ -15,6 +15,7 @@
         '</div>'+
     '';
 
+    $('body').prepend(html_block_result_preview);
 
 
 
@@ -46,27 +47,30 @@
     //-------------------------------------------------------------------------
     $('body').on('click', '#wolf-block-taobao #start-test-wolf', function (e) {
 
+        $('#block_result_preview input').val( get_product_title() );
+
+
         //get_product_option();
         //get_product_option_sku_map_price();
         //get_product_spec();
-        get_product_detail();
-        get_desc_content();
+        //get_product_detail();
+        //get_desc_content();
 
         //get_link_video();
 
         //alert('20509:28317');
         //GM_log($('#J_DetailMeta').html());
 
-        var title = $("#J_DetailMeta .tb-detail-hd h1").text();
-        var title_desc = $("#J_DetailMeta .tb-detail-hd .newp").text();
-
     });
 
 
 
-
-
-
+    //Заголовок продукта
+    function get_product_title() {
+        var title = $("#J_DetailMeta .tb-detail-hd h1").text();
+        var title_desc = $("#J_DetailMeta .tb-detail-hd .newp").text();
+        return title;
+    }
 
 
 
